@@ -11,6 +11,7 @@ public class Bird extends GameObject {
     super(x,y);
     this.alive = alive;
   }
+  
 
   /**
    * Returns whether the bird is alive.

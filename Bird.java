@@ -12,7 +12,6 @@ public class Bird extends GameObject {
     this.alive = alive;
   }
   
-
   /**
    * Returns whether the bird is alive.
    */
@@ -27,6 +26,12 @@ public class Bird extends GameObject {
     setY(getY()-20);
   }
 
+  /**
+   * Bird downward.
+   */
+  public void fall(){
+   set(getY)
+  
   /**
    * Reset the bird.
    */

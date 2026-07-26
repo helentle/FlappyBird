@@ -14,15 +14,14 @@ public class ScoreBoard {
 	}
 	
 	public void ScoreBoard() {
-		
 	}
 	
 	public void AddScore() {
-		
+		score++;
 	}
 	
 	public void reset() {
-		
+		score = 0;
 	}
 	
 }

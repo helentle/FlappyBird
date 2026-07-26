@@ -14,11 +14,18 @@ public class Pipe extends GameObject {
 		this.width = width;
 	}
 	
+	//move left
+	public void move() {
+		
+	}
+	
+	//generate gap for bird
 	public void randomGap() {
 		
 	}
 	
+	@Override
 	public void reset() {
-		
+		super.reset();
 	}
 }

@@ -2,8 +2,8 @@ package flappyBird;
 
 public class GameInterface {
 	Bird bird;
-		Pipe pipe;
-		ScoreBoard scoreboard;
+	Pipe pipe;
+	ScoreBoard scoreboard;
 		
 	/**
 	 * 

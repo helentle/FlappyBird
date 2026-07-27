@@ -8,12 +8,10 @@ public class ScoreBoard {
 	 * @param score
 	 * @param deaths
 	 */
-	public ScoreBoard(int score, int deaths) {
-		this.score = score;
-		this.deaths = deaths;
-	}
 	
-	public void ScoreBoard() {
+	public ScoreBoard() {
+		score = 0;
+		deaths = 0;
 	}
 	
 	public void AddScore() {
@@ -22,6 +20,20 @@ public class ScoreBoard {
 	
 	public void reset() {
 		score = 0;
+	}
+
+	/**
+	 * @return the score
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * @return the deaths
+	 */
+	public int getDeaths() {
+		return deaths;
 	}
 	
 }

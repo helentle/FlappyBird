@@ -1,17 +1,23 @@
 package flappyBird;
 
 public class GameInterface {
-	Bird bird;
-	Pipe pipe;
-	ScoreBoard scoreboard;
+	private Bird bird;
+	private Pipe pipe;
+	private ScoreBoard scoreboard;
+	private GameGui gui;
 		
 	/**
-	 * 
+	 * Creates bird, pipe, and scoreboard objects as well as the gui.
 	 */
-	public GameInterface(Bird bird, Pipe pipe, ScoreBoard scoreboard) {
-	this.bird = bird;
-	this.pipe = pipe;
-	this.scoreboard = scoreboard;
+	public GameInterface() {
+		bird = new Bird(100,250,true);
+		
+		pipe = new Pipe(700, 0, 80);
+		
+		scoreboard = new ScoreBoard();
+		
+		gui = new GameGui(this);
+		
 	}
 	
 	public void start() {

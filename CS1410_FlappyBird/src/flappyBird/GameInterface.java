@@ -20,21 +20,23 @@ public class GameInterface {
 		
 	}
 	
+	//starts game
 	public void start() {
 		
 	}
 	
+	//pauses game
 	public void pause() {
 		
 	}
 
+	//restarts game
 	public void restart() {
 		
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 		
 	}
 

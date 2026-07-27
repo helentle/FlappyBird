@@ -30,7 +30,7 @@ public class Bird extends GameObject {
    * Bird downward.
    */
   public void fall(){
-    set(getY()+5);
+    setY(getY()+5);
   }
   /**
    * Reset the bird.

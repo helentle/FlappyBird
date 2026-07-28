@@ -1,9 +1,9 @@
 package flappyBird;
-
+ 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-
+ 
 public class GameInterface {
 	private Bird bird;
 	private Pipe pipe;
@@ -34,6 +34,8 @@ public class GameInterface {
 				bird.fall();
 				pipe.move();
 				
+				checkCollision();
+				
 				gui.repaint();
 			}
 		});
@@ -57,7 +59,7 @@ public class GameInterface {
 		running = false;
 		timer.stop();
 	}
-
+ 
 	//restarts game
 	/**
 	 * Restart all the game.
@@ -79,39 +81,80 @@ public class GameInterface {
 	}
 	
 	
+	/**
+	 * Checks if the bird collides with the pipe.
+	 */
+	public void checkCollision() {
+ 
+		int birdX = bird.getX();
+		int birdY = bird.getY();
+ 
+		int birdWidth = 40;
+		int birdHeight = 40;
+ 
+		int pipeX = pipe.getX();
+		int pipeWidth = pipe.getWidth();
+ 
+ 
+		// Bird and pipe overlap horizontally
+		boolean horizontalCollision =
+				birdX + birdWidth >= pipeX &&
+				birdX <= pipeX + pipeWidth;
+ 
+ 
+		// Bird hits top or bottom pipe
+		boolean verticalCollision =
+				birdY <= pipe.getGapHeight() ||
+				birdY + birdHeight >= pipe.getGapHeight() + pipe.getGapSize();
+ 
+ 
+		if(horizontalCollision && verticalCollision) {
+ 
+			scoreboard.AddDeath();
+ 
+			running = false;
+ 
+			timer.stop();
+		}
+	}
+	
+	
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 	}
-
+ 
 	/**
 	 * @return the bird
 	 */
 	public Bird getBird() {
 		return bird;
 	}
-
+ 
 	/**
 	 * @return the pipe
 	 */
 	public Pipe getPipe() {
 		return pipe;
 	}
-
+ 
 	/**
 	 * @return the scoreboard
 	 */
 	public ScoreBoard getScoreboard() {
 		return scoreboard;
 	}
-
+ 
 	/**
 	 * @return the gui
 	 */
 	public GameGui getGui() {
 		return gui;
 	}
-
+ 
 	
-
+ 
 }
+ 

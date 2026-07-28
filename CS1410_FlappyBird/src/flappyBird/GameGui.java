@@ -11,6 +11,8 @@ public class GameGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
+	private GameInterface game;
 
 	/**
 	 * Launch the application.
@@ -23,8 +25,13 @@ public class GameGui extends JFrame {
 	 * Create the frame.
 	 */
 	public GameGui(GameInterface game) {
+		
+		this.game = game;
+		
+		setTitle("Flappy Bird");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 600);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(135, 206, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -17,6 +17,7 @@ public class GameInterface {
 		scoreboard = new ScoreBoard();
 		
 		gui = new GameGui(this);
+		gui.setVisible(true);
 		
 	}
 	
@@ -38,6 +39,34 @@ public class GameInterface {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * @return the bird
+	 */
+	public Bird getBird() {
+		return bird;
+	}
+
+	/**
+	 * @return the pipe
+	 */
+	public Pipe getPipe() {
+		return pipe;
+	}
+
+	/**
+	 * @return the scoreboard
+	 */
+	public ScoreBoard getScoreboard() {
+		return scoreboard;
+	}
+
+	/**
+	 * @return the gui
+	 */
+	public GameGui getGui() {
+		return gui;
 	}
 
 	

@@ -1,11 +1,16 @@
 package flappyBird;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 public class GameInterface {
 	private Bird bird;
 	private Pipe pipe;
 	private ScoreBoard scoreboard;
 	private GameGui gui;
 	private boolean running;
+	private Timer timer;
 		
 	/**
 	 * Creates bird, pipe, and scoreboard objects as well as the gui.
@@ -22,6 +27,17 @@ public class GameInterface {
 		gui = new GameGui(this);
 		gui.setVisible(true);
 		
+		//creates timer with 60 frames per second
+		timer = new Timer(16, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bird.fall();
+				pipe.move();
+				
+				gui.repaint();
+			}
+		});
+		
 	}
 	
 	//starts game
@@ -30,6 +46,7 @@ public class GameInterface {
 	 */
 	public void start() {
 		running = true;
+		timer.start();
 	}
 	
 	//pauses game
@@ -38,6 +55,7 @@ public class GameInterface {
 	 */
 	public void pause() {
 		running = false;
+		timer.stop();
 	}
 
 	//restarts game
@@ -50,6 +68,7 @@ public class GameInterface {
 		scoreboard.reset();
 		
 		running =true;
+		timer.start();
 	}
 	
 	/**

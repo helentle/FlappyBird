@@ -6,6 +6,7 @@ public class Pipe extends GameObject {
 
 	private int width;
 	private int gapHeight;
+	private int gapSize;
 
 	/**
 	 * @param x
@@ -28,7 +29,12 @@ public class Pipe extends GameObject {
 	public void randomGap() {
 		Random rand = new Random();
 		
+		//randomizes where the opening starts
 		gapHeight = rand.nextInt(250) + 100;
+		
+		//sets the gap size
+		gapSize = 150;
+		
 	}
 	
 	@Override
@@ -51,5 +57,14 @@ public class Pipe extends GameObject {
 	public int getGapHeight() {
 		return gapHeight;
 	}
+
+	/**
+	 * @return the gapSize
+	 */
+	public int getGapSize() {
+		return gapSize;
+	}
+	
+	
 	
 }

@@ -18,6 +18,10 @@ public class ScoreBoard {
 		score++;
 	}
 	
+	public void AddDeath() {
+		deaths++;
+	}
+	
 	public void reset() {
 		score = 0;
 	}

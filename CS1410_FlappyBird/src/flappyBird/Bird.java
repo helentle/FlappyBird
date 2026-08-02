@@ -20,6 +20,15 @@ public class Bird extends GameObject {
   }
  
   /**
+   * Sets the bird state.
+   * 
+   * @param alive new state
+   */
+  public void setAlive(boolean alive) {
+      this.alive = alive;
+  }
+  
+  /**
   * Bird flap upward.
   */
   public void flap(){

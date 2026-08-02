@@ -3,104 +3,118 @@ package flappyBird;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.GridBagLayout;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import javax.swing.UIManager;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.Rectangle;
-import java.awt.Cursor;
-import javax.swing.border.LineBorder;
-import javax.swing.JLabel;
+import java.awt.Graphics;
+import javax.swing.JComponent;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import javax.swing.KeyStroke;
 
 public class GameGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	
 	private GameInterface game;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		new GameInterface();
+		GameInterface game = new GameInterface();
+		GameGui gui = new GameGui(game);
+		gui.setVisible(true);
+		
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public GameGui(GameInterface game) {
-		
 		this.game = game;
 		
 		setTitle("Flappy Bird");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setSize(800,600);
+		setResizable(false);
 		
-		methodBaseJFrame();
+		setContentPane(new GamePanel(game));
+		setBackground(new Color(135, 206, 250));
+		setFocusable(true);
+	}
+	
+	/**
+	 * the game occurs inside the game panel
+	 */
+	public class GamePanel extends JPanel{
+		private static final long serialVersionUID = 1L;
+		private GameInterface game;
+		// constructs GamePanel and sets focus/listener for spacebar
+		public GamePanel(GameInterface game) {
+		    this.game = game;
+		    setFocusable(true);
+
+		    getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"), "space");
+		    
+		    getActionMap().put("space", new AbstractAction() {
+
+				@Override
+		        public void actionPerformed(ActionEvent e) {
+		            if (!GameGui.this.game.isRunning() && GameGui.this.game.getBird() != null && !GameGui.this.game.getBird().isAlive()) {
+		                GameGui.this.game.restart();
+		                return;
+		            } 
+		            if (!GameGui.this.game.isRunning()){
+		            	((GameInterface) GameGui.this.game).start();
+		            }
+		            GameGui.this.game.flap();
+		        }
+		    });
+		    
+		    requestFocusInWindow();
+		}
+		/**
+		 * overrides paintComponent to repaint the gui as needed
+		 */
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
+			//paint the bird
+			Bird birdGui = game.getBird();
+			if (birdGui != null) {
+				int birdX = birdGui.getX();
+				int birdY = birdGui.getY();
+				g.setColor(new Color(255, 167, 67));
+				g.fillOval(birdX, birdY, 40, 40);
+			}
+			
+			//paint the pipe (top + bottom)
+			Pipe pipeGui = game.getPipe();
+			if (pipeGui != null) {
+				int pipeX = pipeGui.getX();
+				int pipeWidth = pipeGui.getWidth();
+				int gapTop = pipeGui.getGapHeight();
+				int gapSize = pipeGui.getGapSize();
+				g.setColor(new Color(0, 156, 9));
+				//top pipe
+				g.fillRect(pipeX, 0, pipeWidth, gapTop);
+				//bottom pipe
+				int gapBottom = gapTop + gapSize;
+				int bottom = getHeight() - gapBottom;
+				if (bottom > 0) {
+					g.fillRect(pipeX, gapBottom, pipeWidth, bottom);
+				}
+				
+			}
+			
+			//game overlay
+			if (! game.isRunning() && game.getBird() != null && !game.getBird().isAlive()) {
+				g.setColor(new Color(135, 206, 250));
+				g.drawString("GAME OVER - press Space to restart", 200, 300);
+			}
+			
+			
+			
+		}
+	}
 		
-		methodLblBird();
-		
-		methodLblScreenTitle();
-		
-		methodBtnStart();
-
-	}
-
-	private void methodBaseJFrame() {
-		contentPane = new JPanel();
-		contentPane.setForeground(new Color(0, 0, 0));
-		contentPane.setBorder(null);
-		contentPane.setBackground(new Color(135, 206, 250));
-		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		contentPane.setLayout(gbl_contentPane);
-	}
-
-	private void methodLblBird() {
-		JLabel lblBird = new JLabel("O>");
-		lblBird.setIconTextGap(0);
-		lblBird.setFont(new Font("Lucida Grande", Font.BOLD, 99));
-		lblBird.setForeground(new Color(242, 156, 56));
-		GridBagConstraints gbc_lblBird = new GridBagConstraints();
-		gbc_lblBird.gridwidth = 4;
-		gbc_lblBird.gridheight = 2;
-		gbc_lblBird.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBird.gridx = 1;
-		gbc_lblBird.gridy = 1;
-		contentPane.add(lblBird, gbc_lblBird);
-	}
-
-	private void methodLblScreenTitle() {
-		JLabel lblScreenTitle = new JLabel("FLAPPY BIRD");
-		lblScreenTitle.setForeground(new Color(242, 156, 56));
-		lblScreenTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 80));
-		GridBagConstraints gbc_lblScreenTitle = new GridBagConstraints();
-		gbc_lblScreenTitle.gridwidth = 13;
-		gbc_lblScreenTitle.insets = new Insets(0, 0, 5, 5);
-		gbc_lblScreenTitle.gridx = 1;
-		gbc_lblScreenTitle.gridy = 4;
-		contentPane.add(lblScreenTitle, gbc_lblScreenTitle);
-	}
-
-	private void methodBtnStart() {
-		JButton btnStart = new JButton("START");
-		btnStart.setBounds(new Rectangle(200, 200, 200, 200));
-		btnStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnStart.setBackground(UIManager.getColor("Button.background"));
-		btnStart.setForeground(new Color(95, 92, 93));
-		btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 50));
-		btnStart.setBorder(new LineBorder(new Color(95, 92, 93), 3, true));
-		btnStart.setOpaque(true);
-		GridBagConstraints gbc_btnStart = new GridBagConstraints();
-		gbc_btnStart.gridheight = 3;
-		gbc_btnStart.gridwidth = 15;
-		gbc_btnStart.insets = new Insets(0, 0, 5, 0);
-		gbc_btnStart.gridx = 0;
-		gbc_btnStart.gridy = 7;
-		contentPane.add(btnStart, gbc_btnStart);
-	}
-
+	
 }

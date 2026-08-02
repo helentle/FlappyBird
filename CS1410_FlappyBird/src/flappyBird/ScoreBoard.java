@@ -26,11 +26,7 @@ public class ScoreBoard {
 		deaths++;
 	}
 	
-	//resets the scoreboard
-	public void AddDeath() {
-		deaths++;
-	}
-	
+	//resets the scoreboard	
 	public void reset() {
 		score = 0;
 	}

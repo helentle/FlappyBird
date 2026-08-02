@@ -7,6 +7,7 @@ public class Pipe extends GameObject {
 	private int width;
 	private int gapHeight;
 	private int gapSize;
+	private boolean scored;
 
 	/**
 	 * @param x
@@ -17,11 +18,18 @@ public class Pipe extends GameObject {
 		super(x, y);
 		this.width = width;
 		randomGap();
+		scored = false;
 	}
 	
 	//move left
 	public void move() {
 		setX(getX()-5);
+		
+		if (getX() + width <0) {
+			setX(800);
+			randomGap();
+			scored = false;
+		}
 		
 	}
 	
@@ -40,8 +48,9 @@ public class Pipe extends GameObject {
 	@Override
 	public void reset() {
 		setX(800);
-		
 		randomGap();
+		scored = false;
+		
 	}
 
 	/**
@@ -65,6 +74,21 @@ public class Pipe extends GameObject {
 		return gapSize;
 	}
 	
+	/**
+	 * @return true if scored
+	 */
+	public boolean isScored() {
+		return scored;
+	}
+	
+	/**
+	 * Sets whether the pipe has been scored.
+	 * 
+	 * @return scored score state
+	 */
+	public void setScored(boolean scored) {
+		this.scored = scored;
+	}
 	
 	
 }

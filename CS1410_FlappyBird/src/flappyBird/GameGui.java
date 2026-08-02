@@ -1,15 +1,8 @@
 package flappyBird;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
@@ -20,9 +13,6 @@ import java.awt.Rectangle;
 import java.awt.Cursor;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
-import javax.swing.JInternalFrame;
-import java.awt.Canvas;
-import java.awt.Dimension;
 
 public class GameGui extends JFrame {
 
@@ -49,18 +39,27 @@ public class GameGui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		
+		methodBaseJFrame();
+		
+		methodLblBird();
+		
+		methodLblScreenTitle();
+		
+		methodBtnStart();
+
+	}
+
+	private void methodBaseJFrame() {
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(null);
 		contentPane.setBackground(new Color(135, 206, 250));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		
+	}
+
+	private void methodLblBird() {
 		JLabel lblBird = new JLabel("O>");
 		lblBird.setIconTextGap(0);
 		lblBird.setFont(new Font("Lucida Grande", Font.BOLD, 99));
@@ -72,7 +71,9 @@ public class GameGui extends JFrame {
 		gbc_lblBird.gridx = 1;
 		gbc_lblBird.gridy = 1;
 		contentPane.add(lblBird, gbc_lblBird);
-		
+	}
+
+	private void methodLblScreenTitle() {
 		JLabel lblScreenTitle = new JLabel("FLAPPY BIRD");
 		lblScreenTitle.setForeground(new Color(242, 156, 56));
 		lblScreenTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 80));
@@ -82,7 +83,9 @@ public class GameGui extends JFrame {
 		gbc_lblScreenTitle.gridx = 1;
 		gbc_lblScreenTitle.gridy = 4;
 		contentPane.add(lblScreenTitle, gbc_lblScreenTitle);
-		
+	}
+
+	private void methodBtnStart() {
 		JButton btnStart = new JButton("START");
 		btnStart.setBounds(new Rectangle(200, 200, 200, 200));
 		btnStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -98,7 +101,6 @@ public class GameGui extends JFrame {
 		gbc_btnStart.gridx = 0;
 		gbc_btnStart.gridy = 7;
 		contentPane.add(btnStart, gbc_btnStart);
-
 	}
 
 }

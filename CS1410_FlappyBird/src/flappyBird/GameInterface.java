@@ -31,27 +31,44 @@ public class GameInterface {
 		timer = new Timer(16, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				bird.fall();
-				pipe.move();
-				
-				checkCollision();
-				
-				gui.repaint();
+				updateGame();
 			}
 		});
 		
 	}
 	
-	//starts game
+	
+	/**
+	 * Updates the game every frame.
+	 */
+    private void updateGame() {
+        if (!running) {
+            return;
+        }
+
+        bird.fall();
+        pipe.move();
+        checkScore();
+        checkCollision();
+        checkBounds();
+        gui.repaint();
+
+    }
+	
+	
 	/**
 	 * Start the game.
 	 */
 	public void start() {
-		running = true;
-		timer.start();
-	}
+		
+        if (!running) {
+        	
+            running = true;
+            timer.start();
+        }
+
+    }
 	
-	//pauses game
 	/**
 	 * Pause the game.
 	 */
@@ -60,7 +77,6 @@ public class GameInterface {
 		timer.stop();
 	}
  
-	//restarts game
 	/**
 	 * Restart all the game.
 	 */
@@ -71,20 +87,38 @@ public class GameInterface {
 		
 		running =true;
 		timer.start();
+		gui.repaint();
 	}
 	
 	/**
-	 * Returns whether the game is running.
+	 * Makes the bird flap.
 	 */
-	public boolean isRunning() {
-		return running;
+	public void flap() {
+		if (running) {
+			bird.flap();
+		}
 	}
 	
+	
+	/**
+	 * Checks if the bird scored.
+	 */
+	private void checkScore() {
+        if (!pipe.isScored()
+                && pipe.getX() + pipe.getWidth() < bird.getX()) {
+
+            scoreboard.addScore();
+
+            pipe.setScored(true);
+        }
+    }
+	
+
 	
 	/**
 	 * Checks if the bird collides with the pipe.
 	 */
-	public void checkCollision() {
+	private void checkCollision() {
  
 		int birdX = bird.getX();
 		int birdY = bird.getY();
@@ -109,22 +143,35 @@ public class GameInterface {
  
  
 		if(horizontalCollision && verticalCollision) {
- 
-			scoreboard.AddDeath();
- 
-			running = false;
- 
-			timer.stop();
+			gameOver();
 		}
 	}
 	
 	
 	
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Check if the bird leaves the screen.
+	 */
+	private void checkBounds() {
+
+        if (bird.getY() < 0 || bird.getY() > 560) {
+            gameOver();
+        }
+    }
+	
+	/**
+	 * Ends the game.
+	 */
+	private void gameOver() {
+		bird.setAlive(false);
+        scoreboard.addDeath();
+        running = false;
+        timer.stop();
+        gui.repaint();
 	}
+	
+
  
 	/**
 	 * @return the bird
@@ -153,8 +200,23 @@ public class GameInterface {
 	public GameGui getGui() {
 		return gui;
 	}
- 
+	
+	
+	/**
+	 * Returns whether the game is running.
+	 */
+	public boolean isRunning() {
+		return running;
+	}
+		
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new GameInterface();
+	}
 	
  
 }
+
+
  

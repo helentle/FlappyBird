@@ -1,32 +1,61 @@
 package flappyBird;
 
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.io.File;
+
 public class ScoreBoard {
 
 	private int score;
 	private int deaths;
-	
+	private int highScore;
+
 	/**
 	 * creates a scoreboard with default values of 0
+	 * 
 	 * @param score
 	 * @param deaths
 	 */
-	
+
 	public ScoreBoard() {
 		score = 0;
 		deaths = 0;
+		loadScore();
 	}
-	
-	//adds 1 to the score
+
+	// adds 1 to the score
 	public void addScore() {
 		score++;
 	}
+
+	//high score (section fulfilling read/write to a file)
+	public void saveScore() {
+		if (score > highScore) {
+			highScore = score;
+		}
+		try (PrintWriter writer = new PrintWriter("highscore.txt")) {
+
+			writer.println(highScore);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-	//adds 1 to death tally
+	public void loadScore() {
+		try (Scanner reader = new Scanner(new File("highscore.txt"))){
+			highScore = reader.nextInt();
+		}catch (Exception e) {
+			highScore = 0;
+		}
+	}
+
+	// adds 1 to death tally
 	public void addDeaths() {
 		deaths++;
 	}
-	
-	//resets the scoreboard	
+
+	// resets the scoreboard
 	public void reset() {
 		score = 0;
 	}
@@ -44,5 +73,13 @@ public class ScoreBoard {
 	public int getDeaths() {
 		return deaths;
 	}
+
+	/**
+	 * @return the highScore
+	 */
+	public int getHighScore() {
+		return highScore;
+	}
 	
+
 }

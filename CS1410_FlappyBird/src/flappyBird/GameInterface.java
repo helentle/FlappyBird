@@ -166,6 +166,8 @@ public class GameInterface {
 	private void gameOver() {
 		bird.setAlive(false);
         scoreboard.addDeaths();
+        scoreboard.saveScore();
+        
         running = false;
         timer.stop();
         gui.repaint();

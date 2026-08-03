@@ -122,6 +122,7 @@ public class GameGui extends JFrame {
 				g.drawString("FLAPPY BIRD - press Space to start", 200, 300);
 			}
 			
+			
 		}
 	}
 		

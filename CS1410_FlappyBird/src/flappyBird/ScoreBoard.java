@@ -4,6 +4,11 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.io.File;
 
+/**
+ * @author Helen Le, Hared Huaira Reyna, Caliana Caldwell
+ * 
+ * Creates a scoreboard that keeps track of deaths, score, and highscore for the game FlappyBird.
+ */
 public class ScoreBoard {
 
 	private int score;

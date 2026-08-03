@@ -1,5 +1,10 @@
 package flappyBird;
 
+/**
+ * @author Helen Le, Hared Huaira Reyna, Caliana Caldwell
+ * 
+ * Creates a general game object.
+ */
 public class GameObject {
 
 	private int x;

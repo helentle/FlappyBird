@@ -9,6 +9,11 @@ import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import javax.swing.KeyStroke;
 
+/**
+ * @author Helen Le, Hared Huaira Reyna, Caliana Caldwell
+ * 
+ * Creates a GUI for the game Flappy Bird.
+ */
 public class GameGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;

@@ -1,5 +1,10 @@
 package flappyBird;
  
+/**
+ * @author Helen Le, Hared Huaira Reyna, Caliana Caldwell
+ * 
+ * Creates a bird that is constantly falling with a manual flap button.
+ */
 public class Bird extends GameObject {
  
   private boolean alive;

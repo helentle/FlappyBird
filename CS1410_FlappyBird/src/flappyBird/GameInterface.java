@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
  
+/**
+ * @author Helen Le, Hared Huaira Reyna, Caliana Caldwell
+ * 
+ * Contains most of the logic for the game Flappy Bird including the collision, starting, and ending of the game.
+ */
 public class GameInterface {
 	private Bird bird;
 	private Pipe pipe;

@@ -2,6 +2,11 @@ package flappyBird;
 
 import java.util.Random;
 
+/**
+ * @author Helen Le, Hared Huaira Reyna, Caliana Caldwell
+ * 
+ * Creates a pipe with a set width and random gap that moves across the screen.
+ */
 public class Pipe extends GameObject {
 
 	private int width;

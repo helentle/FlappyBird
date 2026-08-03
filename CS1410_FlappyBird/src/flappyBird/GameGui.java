@@ -119,7 +119,7 @@ public class GameGui extends JFrame {
 			}
 			
 			//game start title
-			if (!GameGui.this.game.isRunning() && GameGui.this.game.getBird() != null && !GameGui.this.game.getBird().isAlive()) {
+			if (!GameGui.this.game.isRunning() && GameGui.this.game.getBird() != null && GameGui.this.game.getBird().isAlive()) {
 				g.setColor(new Color(135, 206, 250));
 				g.drawString("FLAPPY BIRD - press Space to start", 200, 300);
 			}

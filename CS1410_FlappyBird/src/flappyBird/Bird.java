@@ -32,14 +32,14 @@ public class Bird extends GameObject {
   * Bird flap upward.
   */
   public void flap(){
-    setY(getY()-20);
+    setY(getY()-40);
   }
  
   /**
    * Bird downward.
    */
   public void fall(){
-    setY(getY()+5);
+    setY(getY()+2);
   }
   /**
    * Reset the bird.

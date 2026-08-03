@@ -19,8 +19,8 @@ public class GameGui extends JFrame {
 	 */
 	public static void main(String[] args) {
 		GameInterface game = new GameInterface();
-		GameGui gui = new GameGui(game);
-		gui.setVisible(true);
+//		GameGui gui = new GameGui(game);
+//		gui.setVisible(true);
 		
 	}
 

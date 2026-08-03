@@ -105,6 +105,11 @@ public class GameGui extends JFrame {
 				
 			}
 			
+			//scoreboard
+			g.setColor(Color.BLACK);
+			g.drawString("Score: " + game.getScoreboard().getScore(), 650, 30);
+			g.drawString("Deaths: " + game.getScoreboard().getDeaths(), 650, 50);
+			
 			//game overlay
 			if (! game.isRunning() && game.getBird() != null && !game.getBird().isAlive()) {
 				g.setColor(new Color(135, 206, 250));
